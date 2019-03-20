@@ -23,13 +23,15 @@ class ViewController: UIViewController {
     
     @IBOutlet var KeyBoard: [UIButton]!
     
+    var game = Hangman()
+    
     var runCount = 5
     var WinCount = 0
     var FailCount = 0
     var stop = false
     var correct_word = ""
     var hangman = 0
-    let dictionary = ["EFREI", "ESIGETEL", "EPITA", "TRESLONGMOT", "PARIS", "KILIAN", "BENJAMIN"]
+    let dictionary = 
     
     @IBAction func enter_key(_ sender: UIButton) {
         checkAnswer(on: sender)
