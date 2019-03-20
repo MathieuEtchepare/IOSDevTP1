@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  SuperHangman
+//  Hangman_works
 //
-//  Created by Mathieu ETCHEPARE on 27/02/2019.
-//  Copyright © 2019 Mathieu ETCHEPARE. All rights reserved.
+//  Created by Kilian POULIN on 27/02/2019.
+//  Copyright © 2019 Efreeeeey. All rights reserved.
 //
 
 import UIKit
