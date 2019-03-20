@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     
     var runCount = 5
     var WinCount = 0
-    var LoseCount = 0
+    var FailCount = 0
     var stop = false
     var correct_word = ""
     var hangman = 0
@@ -51,6 +51,9 @@ class ViewController: UIViewController {
             if self.runCount == 0 {
                 timer.invalidate()
                 self.pop_up(title: "YOU LOSE!", message: "Time's up! The correct answer was " + self.correct_word)
+                self.disableEverything()
+                self.FailCount += 1
+                self.FailCountLabel.text = String(self.FailCount)
             }
             else if self.stop == true {
                 timer.invalidate()
@@ -66,15 +69,20 @@ class ViewController: UIViewController {
     }
     
     func disableEverything(){
-        for var s in KeyBoard{    //    disabling keyboard
+        for var s in KeyBoard{    //    disables keyboard
             s.isEnabled = false
         }
-        stop = true
+        stop = true             //  flag to stop the timer
+        StopButton.isEnabled = false
+        StartButton.isEnabled = true
     }
     
     func startingGame(){
+        hangman = 0
+        stop = false
         correct_word = dictionary[Int.random(in:0..<dictionary.count)]
         TimerLabel.text = "5"
+        runCount = 5
         let cpt_word = correct_word.count
         
         var tirets = ""
@@ -92,6 +100,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        TimerLabel.text = "5"
+        WinCountLabel.text = "0"
+        FailCountLabel.text = "0"
+        WordLabel.text = "PRESS START"
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -106,10 +119,14 @@ class ViewController: UIViewController {
         if(WordLabel.text!.contains("_") == false){
             pop_up(title: "CONGRATS!", message: "YOU WIN!")
             disableEverything()
+            WinCount += 1
+            WinCountLabel.text = String(WinCount)
         }
         else if(hangman == 6){
             pop_up(title: "YOU LOSE!", message: "The correct answer was " + correct_word)
             disableEverything()
+            FailCount += 1
+            FailCountLabel.text = String(FailCount)
         }
     }
     
